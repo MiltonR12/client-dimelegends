@@ -6,6 +6,7 @@ export const useGetPage = () => {
   return useQuery({
     queryKey: ["page"],
     queryFn: getPage,
+    retry: 1,
   });
 };
 

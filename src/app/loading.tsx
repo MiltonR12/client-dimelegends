@@ -1,11 +1,10 @@
-import React from 'react'
 
-function Loagin() {
+function Loading() {
   return (
-    <section>
+    <main className="h-screen flex items-center justify-center bg-slate-950" >
       <h3>Cargando...</h3>
-    </section>
+    </main>
   )
 }
 
-export default Loagin
+export default Loading

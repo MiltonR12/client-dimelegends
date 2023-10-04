@@ -8,7 +8,7 @@ function UpdateRecordPage({ params }: { params: { nro: string, id: string } }) {
   const { data, isLoading, isError } = useGetRecord<Record>(params.nro, params.id)
 
   return (
-    <div>
+    <div className="w-full p-2 md:p-3" >
       {isLoading && <p>Cargando...</p>}
       {isError && <p>Se produjo un Error</p>}
       {!isLoading && !isError && <RecordForm isCreate={false} initialValues={data} />}

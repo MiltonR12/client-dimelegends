@@ -1,23 +1,12 @@
 import TorneoForm from "@/components/CustomForms/TorneoForm"
-import { Tournament } from "@/types/interfaces"
-
-const initialValues: Omit<Tournament, "nro" | "Page"> = {
-  tournamentName: "",
-  formUrl: "",
-  dateStart: "",
-  cost: "",
-  game: "",
-  description: "",
-  modality: [""],
-  requirements: [""],
-  rules: [""],
-  award: [""]
-}
+import Authenticate from '@/components/PartPage/Authenticate'
 
 function CreateTournamentPage() {
   return (
     <div className='p-2' >
-      <TorneoForm initValues={initialValues} isCreate={true} />
+      <Authenticate>
+        <TorneoForm isCreate={true} />
+      </Authenticate>
     </div>
   )
 }

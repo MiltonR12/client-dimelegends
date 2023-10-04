@@ -1,26 +1,11 @@
-"use client"
-import DetailsTorneo from "@/components/CustomCards/DetailsTorneo"
-import { useGetAllTorneo } from "@/hooks/useTournament"
-import { CardTournament } from '@/types/interfaces'
+import TournamentList from "@/components/CustomElements/list/TournamentList"
 
 function TorneosPage() {
 
-  const { data = [], isLoading, isError } = useGetAllTorneo<CardTournament[]>()
-
-  if (isLoading) return <p>Cargando...</p>
-
-  if (isError) return <p>Error</p>
-
   return (
     <div className="p-2" >
-      <h2 className="text-5xl text-center" >Torneos</h2>
-      <div className="flex flex-wrap gap-5 justify-center" >
-        {
-          data.map((item, index) => (
-            <DetailsTorneo key={index} torneo={item} />
-          ))
-        }
-      </div>
+      <h2 className="text-5xl text-center mb-5 font-semibold" >Torneos</h2>
+      <TournamentList />
     </div>
   )
 }

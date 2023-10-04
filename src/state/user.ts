@@ -10,32 +10,26 @@ type State = {
   resetState: () => void;
 };
 
+const User = {
+  lastName: "",
+  firstName: "",
+  email: "",
+  biography: "",
+  urlPhoto: "",
+};
+
 export const useUserState = create(
   persist<State>(
     (set) => ({
-      user: {
-        lastName: "",
-        firstName: "",
-        email: "",
-        password: "",
-        biography: "",
-        urlPhoto: "",
-      },
+      user: User,
       isAllow: false,
       token: "",
-      updateState: (user, token) =>
-        set(() => ({ isAllow: true, token: token, user: user })),
+      updateState: (user, token) => set(() => ({ isAllow: true, token, user })),
       resetState: () =>
         set(() => ({
           isAllow: false,
           token: "",
-          user: {
-            biography: "",
-            email: "",
-            firstName: "",
-            lastName: "",
-            urlPhoto: "",
-          },
+          user: User,
         })),
     }),
     {

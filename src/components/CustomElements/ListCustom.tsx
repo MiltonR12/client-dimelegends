@@ -24,7 +24,7 @@ function ListCustom({ name, title, list }: Props) {
       >
         {list.map((item, index) => (
           <option
-            className='py-1 text-xl text-cyan-400'
+            className='py-1 text-cyan-400'
             value={item}
             key={index} >{item}</option>
         ))}

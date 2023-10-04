@@ -1,13 +1,13 @@
 
 function RecordPage() {
   return (
-    <section className="text-7xl h-full flex items-center justify-center" >
+    <div className="text-7xl h-full flex items-center justify-center" >
       <h3 className="text-center font-semibold" >
-        Bienveido
+        Bienvenido
         <br />
         Administrador de Registros
       </h3>
-    </section>
+    </div>
   )
 }
 

@@ -18,15 +18,15 @@ export const useGetRecord = <T>(nro: string, id: string) => {
 export const useGetRecords = <T>(nro: string) => {
   return useQuery<T>({
     queryKey: ["records", nro],
-    queryFn: () => getTournamentRecords(nro),
+    queryFn: () => getTournamentRecords(nro), 
   });
 };
 
 export const useCreateRecord = () => {
   return useMutation({
     mutationFn: createRecord,
-    onSuccess() {
-      querClient.invalidateQueries(["records"]);
+    onSuccess(data, variables, context) {
+      querClient.invalidateQueries({ queryKey: ["records"] });
     },
   });
 };
@@ -34,8 +34,8 @@ export const useCreateRecord = () => {
 export const useDeleteRecord = () => {
   return useMutation({
     mutationFn: deleteRecord,
-    onSuccess() {
-      querClient.invalidateQueries(["records"]);
+    onSuccess(data, variables, context) {
+      querClient.invalidateQueries({ queryKey: ["records"] });
     },
   });
 };
@@ -43,8 +43,8 @@ export const useDeleteRecord = () => {
 export const useUpdateRecord = () => {
   return useMutation({
     mutationFn: updateRecord,
-    onSuccess() {
-      querClient.invalidateQueries(["records"]);
+    onSuccess(data, variables, context) {
+      querClient.invalidateQueries({ queryKey: ["records"] });
     },
   });
 };

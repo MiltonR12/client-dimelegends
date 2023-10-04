@@ -1,5 +1,6 @@
 .contLayout {
-  background: url(../assets/background-blue.jpg);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url(../imgs/blue-form.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

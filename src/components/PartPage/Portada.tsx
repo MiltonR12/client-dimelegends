@@ -1,13 +1,13 @@
-import estilos from '@/styles/portada.module.css'
 import Title from '../CustomElements/Title'
 import Image from 'next/image'
 import copa from '@/imgs/copa.png'
 import logo from '@/imgs/logo.png'
 
 function Portada() {
+
   return (
     <section
-      className={`${estilos.contPortada} h-screen flex justify-center items-center p-3`} >
+      className={`fondo bg-no-repeat bg-cover h-screen flex place-items-center p-3 transition-all`} >
       <div
         className='container mx-auto flex gap-5 flex-col sm:flex-row justify-around items-center' >
         <div className='w-96 hidden sm:block' >

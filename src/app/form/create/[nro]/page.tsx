@@ -1,16 +1,11 @@
 import RecordForm from "@/components/CustomForms/RecordForm"
 
-const initialValues = {
-  teamName: "",
-  captain: "",
-  phone: "",
-  players: [""]
-}
+
 
 function FormCreatePage() {
   return (
-    <div>
-      <RecordForm isCreate={true} initialValues={initialValues} />
+    <div className="w-full p-2 md:p-3" >
+      <RecordForm isCreate={true} />
     </div>
   )
 }

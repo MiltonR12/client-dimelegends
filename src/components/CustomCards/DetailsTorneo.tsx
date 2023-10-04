@@ -1,14 +1,11 @@
 import { CardTournament } from "@/types/interfaces"
 import SectionInfo from "../CustomElements/SectionInfo"
-import { GiTrophyCup } from 'react-icons/gi'
 import { AiOutlineDoubleRight } from 'react-icons/ai'
 import Link from 'next/link'
+import Cup from "../icons/Cup"
 
-type Props = {
-  torneo: CardTournament
-}
 
-function DetailsTorneo({ torneo }: Props) {
+function DetailsTorneo({ torneo }: { torneo: CardTournament }) {
 
   const dateStart = new Date(torneo.dateStart).toLocaleString("es", { month: "long", day: "numeric" })
 
@@ -20,9 +17,7 @@ function DetailsTorneo({ torneo }: Props) {
         </h3>
       </div>
       <div className="md:grid md:grid-cols-3" >
-        <div className="hidden md:flex items-center justify-center h-full text-9xl" >
-          <GiTrophyCup />
-        </div>
+        <Cup />
         <div className="p-3 flex flex-col gap-2 col-span-2" >
           <div className="text-center text-cyan-400" >
             <h4 className="text-2xl" >Descripción</h4>

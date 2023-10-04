@@ -1,8 +1,10 @@
 import {
   creatTournament,
+  deleteTournament,
   getAllTournament,
   getMyTournaments,
   getTournament,
+  updateTournament,
 } from "@/api/tournamentApi";
 import { querClient } from "@/lib/queryClient";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -32,7 +34,25 @@ export const useCreatTorneo = () => {
   return useMutation({
     mutationFn: creatTournament,
     onSuccess() {
-      querClient.invalidateQueries(["torneos"]);
+      querClient.invalidateQueries(["torneos", "mis-torneos"]);
+    },
+  });
+};
+
+export const useDeleteTorneo = () => {
+  return useMutation({
+    mutationFn: deleteTournament,
+    onSuccess() {
+      querClient.invalidateQueries(["mis-torneos", "torneos"]);
+    },
+  });
+};
+
+export const useUpdateTorneo = () => {
+  return useMutation({
+    mutationFn: updateTournament,
+    onSuccess() {
+      querClient.invalidateQueries(["mis-torneos", "torneos"]);
     },
   });
 };

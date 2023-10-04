@@ -38,6 +38,7 @@ function ArrayInput({ name, title, placehoder = "", values, required = false }: 
                     <Field
                       placehoder={placehoder}
                       required={required}
+                      autoComplete="off"
                       className='bg-transparent outline-none w-full md:text-xl'
                       name={`${name}.${index}`} />
                     <button
