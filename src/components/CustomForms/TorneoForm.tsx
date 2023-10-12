@@ -1,7 +1,7 @@
 "use client"
 import { Tournament } from '@/types/interfaces'
 import { Formik } from 'formik'
-import InputForm from '../CustomElements/InputForm'
+import InputForm from './InputForm'
 import ListCustom from '../CustomElements/ListCustom'
 import ArrayInput from '../CustomElements/ArrayInput'
 import { useCreatTorneo, useUpdateTorneo } from '@/hooks/useTournament'

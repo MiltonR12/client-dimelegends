@@ -7,7 +7,7 @@ function Portada() {
 
   return (
     <section
-      className={`fondo bg-no-repeat bg-cover h-screen flex place-items-center p-3 transition-all`} >
+      className={`fondo h-screen flex place-items-center p-3 transition-all`} >
       <div
         className='container mx-auto flex gap-5 flex-col sm:flex-row justify-around items-center' >
         <div className='w-96 hidden sm:block' >

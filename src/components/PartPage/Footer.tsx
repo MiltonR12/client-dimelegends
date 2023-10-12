@@ -37,22 +37,22 @@ function Footer() {
           <h4 className="text-2xl font-bold">Síguenos</h4>
           <ul className="mt-4 flex flex-col gap-3">
             <li>
-              <Link href='/'
+              <a href='https://www.facebook.com/DimeLegendsBolivia'
                 className="text-xl text-white hover:text-gray-400 flex gap-3 items-center" >
                 <AiFillFacebook /> <span>Facebook</span>
-              </Link>
+              </a>
             </li>
             <li>
-              <Link href='/torneos'
+              <a href='https://chat.whatsapp.com/K5AH26VUJwC9zhLMnZ7OI1'
                 className="text-xl text-white hover:text-gray-400 flex gap-3 items-center" >
                 <AiOutlineWhatsApp /> <span>WhatsApp</span>
-              </Link>
+              </a>
             </li>
             <li>
-              <Link href='/contacto'
+              <a href='https://discord.gg/Rkf4rsCm'
                 className="text-xl text-white hover:text-gray-400 flex gap-3 items-center" >
                 <BsDiscord /> <span>Discord</span>
-              </Link>
+              </a>
             </li>
           </ul>
         </div>

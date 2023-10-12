@@ -1,45 +1,46 @@
 "use client"
 import { useDeleteTorneo, useGetMyTorneo } from '@/hooks/useTournament'
 import Link from 'next/link'
-import { useParams, useRouter } from 'next/navigation'
+import { useParams } from 'next/navigation'
 import { AiFillDelete } from 'react-icons/ai'
 import { HiOutlinePencilSquare } from 'react-icons/hi2'
 import { showDelete } from '@/components/show/DeleteShow'
+import SkeletonRecords from '@/components/Skeleton/SkeletonRecords'
 
-type Mitorneo = {
-  nro: string,
-  tournamentName: string,
-  formUrl: string
+type Props = {
+  closeNav: () => void
 }
 
-function ListRecord() {
+function ListRecord({ closeNav }: Props) {
 
-  const { data = [], isLoading, isError, error, refetch } = useGetMyTorneo<Mitorneo[]>()
+  const { data = [], isLoading, isError } = useGetMyTorneo()
   const { mutate: deleteTorneo } = useDeleteTorneo()
 
   const params = useParams()
-  const router = useRouter()
 
   const handlerDelete = (nro: string) => {
     showDelete({
-      onSuccess: () => {
+      onSuccess() {
         deleteTorneo(nro)
       }
     })
   }
 
-  if (isLoading) return <p>Cargando...</p>
-
-  if (isError && error instanceof Error) return <p>{error.message}</p>
-
   return (
-    <div className="flex flex-col h-full overflow-y-auto" >
+    <div
+      onClick={closeNav}
+      className="flex flex-col h-full overflow-y-auto" >
+
+      {isLoading && <SkeletonRecords />}
+
+      {!isLoading && isError && <p>Error al cargar</p>}
+
       {
         data.map((item, index) => (
           <div key={index}
             className={`
             ${params.nro === item.nro ? "bg-gradient-to-r" : ""}
-            flex justify-between text-xl from-cyan-400 to-blue-800`} >
+            flex justify-between items-center text-xl from-cyan-400 to-blue-800`} >
             {
               item.formUrl ? <a
                 href={item.formUrl}
@@ -53,7 +54,7 @@ function ListRecord() {
                   {item.tournamentName}
                 </Link>
             }
-            <div className='flex gap-3 px-3 items-center' >
+            <div className='flex gap-3 px-3 pr-7 items-center' >
               <Link href={`/torneo/update/${item.nro}`} >
                 <HiOutlinePencilSquare />
               </Link>

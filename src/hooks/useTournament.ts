@@ -9,6 +9,12 @@ import {
 import { querClient } from "@/lib/queryClient";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
+type Mitorneo = {
+  nro: string,
+  tournamentName: string,
+  formUrl: string
+}
+
 export const useGetAllTorneo = <T>() => {
   return useQuery<T>({
     queryKey: ["torneos"],
@@ -23,8 +29,8 @@ export const useGetTorneo = <T>(nro: string) => {
   });
 };
 
-export const useGetMyTorneo = <T>() => {
-  return useQuery<T>({
+export const useGetMyTorneo = () => {
+  return useQuery<Mitorneo[]>({
     queryKey: ["mis-torneos"],
     queryFn: getMyTournaments,
   });

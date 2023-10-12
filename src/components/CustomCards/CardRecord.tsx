@@ -10,7 +10,7 @@ import PlayersList from '../CustomElements/list/PlayersList'
 import { useState } from 'react'
 import { showDelete } from '../show/DeleteShow'
 
-function CardRecord({ record }: { record: Record }) {
+function CardRecord({ record, isPar }: { record: Record, isPar: boolean }) {
 
   const [isOpen, setIsOpen] = useState(false)
   const { mutate: deleteRecord } = useDeleteRecord()
@@ -30,7 +30,7 @@ function CardRecord({ record }: { record: Record }) {
 
   return (
     <>
-      <tr className='grid grid-cols-4 gap-2 p-2' >
+      <tr className={`grid grid-cols-4 gap-2 p-2 ${isPar ? "bg-zinc-900" : "bg-zinc-800"}`} >
         <td>{record.teamName}</td>
         <td>{record.phone}</td>
         <td>{record.captain}</td>

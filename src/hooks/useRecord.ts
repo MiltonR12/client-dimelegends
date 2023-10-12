@@ -7,6 +7,7 @@ import {
 } from "@/api/recordApi";
 import { querClient } from "@/lib/queryClient";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { Record } from '@/types/interfaces'
 
 export const useGetRecord = <T>(nro: string, id: string) => {
   return useQuery<T>({
@@ -15,10 +16,10 @@ export const useGetRecord = <T>(nro: string, id: string) => {
   });
 };
 
-export const useGetRecords = <T>(nro: string) => {
-  return useQuery<T>({
+export const useGetRecords = (nro: string) => {
+  return useQuery<Record[]>({
     queryKey: ["records", nro],
-    queryFn: () => getTournamentRecords(nro), 
+    queryFn: () => getTournamentRecords(nro),
   });
 };
 

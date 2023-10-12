@@ -1,7 +1,7 @@
 
 function RecordPage() {
   return (
-    <div className="text-7xl h-full flex items-center justify-center" >
+    <div className="text-3xl md:text-7xl min-h-[calc(100vh-56px)] flex items-center justify-center" >
       <h3 className="text-center font-semibold" >
         Bienvenido
         <br />

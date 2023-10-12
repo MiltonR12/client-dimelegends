@@ -28,7 +28,7 @@ function ExitButton() {
 
   return (
     <button
-      className="bg-red-600 py-1 px-3 mx-auto text-xl rounded-lg"
+      className="bg-red-600 py-2 px-4 mx-auto text-xl rounded-lg"
       onClick={showDialogExit} >
       Cerrar Session
     </button>

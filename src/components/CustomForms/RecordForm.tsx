@@ -7,10 +7,10 @@ import gamer from '@/imgs/gamer.jpg'
 import Image from 'next/image'
 import { useCreateRecord, useUpdateRecord } from '@/hooks/useRecord'
 import { useParams, useRouter } from 'next/navigation'
-import Link from 'next/link'
 import RecordSuccess from '../show/RecordSuccess'
 import { useState } from 'react'
 import { RecordDefault } from '@/utils/defaultForm'
+import SecondaryButton from '../CustomElements/Buttons/SecondaryButton'
 
 type Prosp = {
   initialValues?: Omit<Record, "teamID">
@@ -58,22 +58,20 @@ function RecordForm({ initialValues = RecordDefault, isCreate }: Prosp) {
                   {isCreate ? "Registrar Equipo" : "Actualizar Equipo"}
                 </h3>
 
-                <InputCustom name='teamName' title='Nombre del Equipo' />
-                <InputCustom name='captain' title='Nombre del Capitan' />
-                <InputCustom name='phone' title='Numero del Capitan' />
+                <InputCustom name='teamName' title='Nombre del Equipo' required={true} />
+                <InputCustom name='captain' title='Nombre del Capitan' required={true} />
+                <InputCustom name='phone' title='Numero del Capitan' required={true} />
                 <ArrayInput name='players' title='Integrantes' values={values.players} />
 
-                <div className='flex gap-3 items-center' >
-                  {!isCreate && <Link
-                    className='border-zinc-800 bg-zinc-800 border-4 rounded-xl py-2 
-                    text-xl mt-3 w-full text-center'
+                <div className='grid md:grid-cols-2 gap-3 mt-5' >
+                  {!isCreate && <SecondaryButton
                     href={`/record/${params.nro as string}`} >
                     Cancelar
-                  </Link>}
+                  </SecondaryButton>}
                   <button
                     type="submit"
-                    className='border-cyan-400 border-4 rounded-xl py-2 
-                    text-xl mt-3 w-full'>
+                    className='border-cyan-400 bg-cyan-400 border-4 rounded-xl py-2 
+                    text-xl w-full text-slate-950 font-semibold'>
                     {isCreate ? "Registrar Equipo" : "Guardar Cambios"}
                   </button>
                 </div>

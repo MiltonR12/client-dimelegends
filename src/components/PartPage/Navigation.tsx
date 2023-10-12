@@ -3,7 +3,7 @@ import { useUserState } from '@/state/user'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { GiHamburgerMenu } from 'react-icons/gi'
-import NavSession from '../CustomElements/NavSession'
+import NavSession from './NavSession'
 import Enlace from '../CustomElements/Buttons/Enlace'
 import DimeLgends from '../icons/DimeLgends'
 
@@ -23,7 +23,7 @@ function Navigation() {
   }
 
   return (
-    <header className={`bg-slate-950 text-white w-full top-0 fixed z-50`} >
+    <header className={`bg-slate-950 text-white w-full top-0 fixed z-40`} >
       <div className='max-w-7xl mx-auto flex items-center justify-between h-14 md:h-20 px-3' >
 
         <DimeLgends />

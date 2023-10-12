@@ -24,7 +24,7 @@ export interface CardTournament {
   game: string;
   cost: string;
   description: string;
-  Page: Pick<Page, "pageName">
+  Page: Pick<Page, "pageName" | "urlGroup">;
 }
 
 export interface Tournament extends CardTournament {
@@ -35,10 +35,26 @@ export interface Tournament extends CardTournament {
   award: string[];
 }
 
+export interface TournamentComplet extends Tournament {
+  Team: {
+    teamName: string;
+  }[];
+}
+
 export interface Record {
-  teamID: string,
-  teamName: string,
-  captain: string,
-  phone: string,
-  players: string[]
+  teamID: string;
+  teamName: string;
+  captain: string;
+  phone: string;
+  players: string[];
+}
+
+export interface Battle {
+  battleID: string;
+  teamOne: string;
+  teamTwo: string;
+  battleDate: string;
+  battlephase: number;
+  battleGroup: string | null;
+  battleWinner: string | null;
 }

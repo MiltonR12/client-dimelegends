@@ -10,7 +10,7 @@ import TableSkeleton from "../Skeleton/TableSkeleton"
 
 function TableTeam({ nro }: { nro: string }) {
 
-  const { data = [], isLoading, isError } = useGetRecords<Record[]>(nro)
+  const { data = [], isLoading, isError } = useGetRecords(nro)
   const [search, setSearch] = useState("")
 
   const handleSearch = (team: Record) => {
@@ -18,6 +18,7 @@ function TableTeam({ nro }: { nro: string }) {
     const phone = team.phone.toLowerCase().trim()
     const captain = team.captain.toLowerCase().trim()
     const textSearch = search.toLowerCase().trim()
+
     if (teamName.includes(textSearch)) {
       return true
     } else if (phone.includes(textSearch)) {
@@ -41,16 +42,14 @@ function TableTeam({ nro }: { nro: string }) {
       <table>
         <HeaderTable />
         {isLoading && <TableSkeleton />}
-        {isError && !isLoading && <span>Ocurrio un error</span> }
-        {
-          data.filter((elem) => handleSearch(elem)).map((item, index) => (
-            <tbody
-              key={index}
-              className={`${index % 2 === 0 ? "bg-zinc-900" : "bg-zinc-800"}`} >
-              <CardRecord record={item} />
-            </tbody>
-          ))
-        }
+        {isError && !isLoading && <span>Ocurrio un error</span>}
+        <tbody>
+          {
+            data.filter((elem) => handleSearch(elem)).map((item, index) => (
+              <CardRecord record={item} isPar={index % 2 === 0} key={index} />
+            ))
+          }
+        </tbody>
       </table>
     </div>
   )

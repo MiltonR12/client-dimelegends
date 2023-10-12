@@ -2,6 +2,7 @@ import Portada from "@/components/PartPage/Portada"
 import Image from 'next/image'
 import copa from '@/imgs/copa.png'
 import Link from 'next/link'
+import ContentCreators from "@/components/panel/ContentCreators"
 
 function HomePage() {
   return (
@@ -28,6 +29,7 @@ function HomePage() {
           </div>
         </div>
       </section>
+      <ContentCreators />
     </>
   )
 }
