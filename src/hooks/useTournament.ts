@@ -48,8 +48,8 @@ export const useCreatTorneo = () => {
 export const useDeleteTorneo = () => {
   return useMutation({
     mutationFn: deleteTournament,
-    onSuccess() {
-      querClient.invalidateQueries(["mis-torneos", "torneos"]);
+    onSuccess(data, variables, context) {
+      querClient.invalidateQueries(["mis-torneos", "torneos", variables]);
     },
   });
 };

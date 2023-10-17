@@ -7,12 +7,15 @@ import { showDialogInput } from '@/components/show/showDialog'
 import CampEnlace from "./camp/CampEnlace"
 import ButtonManage from "./Buttons/ButtonManage"
 import UploadForm from "../CustomForms/UploadForm"
+import Image from 'next/image'
+import { useState } from 'react'
 
 function PageProfile() {
 
   const { data, isLoading, isError } = useGetPage()
   const { mutate: updatePage } = useUpdatePage()
   const router = useRouter()
+  const [editar, setEditar] = useState(false)
 
   const addLinkGroup = () => {
     showDialogInput({
@@ -68,23 +71,41 @@ function PageProfile() {
 
           <ButtonManage />
 
-          <UploadForm />
+          {data.urlImage ?
+            !editar ? <div >
+              <Image
+                src={data.urlImage}
+                alt={data.pageName}
+                width={300}
+                height={300}
+                className="mx-auto"
+              />
+              <button
+                className="bg-zinc-800 py-2 px-4 text-xl rounded-lg mt-5"
+                onClick={() => setEditar(true)} >Editar Imagen</button>
+            </div> : <div>
+              <UploadForm />
+              <button
+                className="bg-zinc-800 py-2 px-4 text-xl rounded-lg mt-5"
+                onClick={() => setEditar(false)} >No Editar Imagen</button>
+            </div>
+            : <UploadForm />}
 
           {
-            !data.urlGroup ? <ButtonAdd
-              action={addLinkGroup}
-              title="Añadir enlace del grupo" /> : <CampEnlace
+            data.urlGroup ? <CampEnlace
               handleClick={addLinkGroup}
-              title={`Enlace Del Grupo: ${data.urlGroup}`} />
+              title={`Enlace Del Grupo: ${data.urlGroup}`} /> : <ButtonAdd
+              action={addLinkGroup}
+              title="Añadir enlace del grupo" />
           }
 
           {
-            !data.urlPage ? <ButtonAdd
-              action={addLinkPage}
-              title="Añadir enlace de la pagina" /> : <CampEnlace
+            data.urlPage ? <CampEnlace
               handleClick={addLinkPage}
               title={`Enlace De La Pagina: ${data.urlPage}`}
-            />
+            /> : <ButtonAdd
+              action={addLinkPage}
+              title="Añadir enlace de la pagina" />
           }
 
         </div>

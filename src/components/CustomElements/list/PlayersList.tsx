@@ -1,10 +1,10 @@
 
 function PlayersList({ players, isOpen }: { players: string[], isOpen: boolean }) {
   return (
-    <tr className={`${isOpen ? "flex" : "hidden"} flex-col gap-1 mx-7 text-xl list-decimal`} >
+    <tr className={`${isOpen ? "flex" : "hidden"} bg-neutral-900 grid gap-1 p-2 text-xl list-decimal`} >
       {
         players.map((item, index) => (
-          <td key={index} >{item}</td>
+          <td colSpan={4} key={index} >{item}</td>
         ))
       }
     </tr>

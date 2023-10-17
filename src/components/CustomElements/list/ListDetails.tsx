@@ -20,10 +20,10 @@ function ListDetails({ title, values }: Props) {
         <span>{title}</span>
         {isOpen ? <AiFillCaretUp /> : <AiFillCaretDown />}
       </button>
-      <ul className={`${isOpen ? "flex" : "hidden"} flex-col py-2 gap-2 bg-black`} >
+      <ul className={`${isOpen ? "flex" : "hidden"} flex-col py-2 gap-1 bg-black`} >
         {values.map((item, index) => (
           <li
-            className='ml-5 list-outside'
+            className='mx-7 list-disc'
             key={index} > {item} </li>
         ))}
       </ul>

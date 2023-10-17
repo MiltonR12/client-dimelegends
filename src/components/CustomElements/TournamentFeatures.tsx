@@ -11,7 +11,7 @@ function TournamentFeatures({ torneo }: { torneo: TournamentComplet }) {
   const dateTournament = new Date(torneo.dateStart).toLocaleString("es", {
     day: "numeric",
     month: "long",
-    year: "2-digit"
+    year: "numeric"
   })
 
   return (
@@ -52,14 +52,14 @@ function TournamentFeatures({ torneo }: { torneo: TournamentComplet }) {
       </div>
 
       <div className="bg-cyan-400 p-3 overflow-auto select-none" >
-        <h4 className="text-center text-2xl mb-3 font-semibold" >
+        <h4 className="text-center text-2xl mb-3 font-semibold text-slate-950" >
           LISTA DE INSCRITOS
         </h4>
         <NameTeamsList nameList={torneo.Team} />
-        <h4 className="text-center text-2xl my-3 font-semibold" >
+        <h4 className="text-center text-2xl my-3 font-semibold text-slate-950" >
           HORARIOS
         </h4>
-        <PanelVersus nro={torneo.nro} />
+        <PanelVersus key={torneo.nro} nro={torneo.nro} />
       </div>
 
     </div>

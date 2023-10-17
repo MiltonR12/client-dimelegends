@@ -1,4 +1,5 @@
 import {
+  createAllBattles,
   createBattle,
   deleteBattle,
   getBattles,
@@ -15,7 +16,7 @@ interface BattleTime extends Battle {
 export const useGetBattles = (nro: string) => {
   return useQuery<BattleTime[]>({
     queryKey: ["battle", nro],
-    queryFn: () => getBattles(nro)
+    queryFn: () => getBattles(nro),
   });
 };
 
@@ -27,6 +28,18 @@ export const useCreateBattle = () => {
     },
     onError(error, variables, context) {
       alert("Error al crear el versus");
+    },
+  });
+};
+
+export const useCreateAllBattles = () => {
+  return useMutation({
+    mutationFn: createAllBattles,
+    onSuccess(data, variables) {
+      querClient.invalidateQueries(["battle", variables.nro]);
+    },
+    onError(error, variables, context) {
+      alert("Error al generar los horarios");
     },
   });
 };

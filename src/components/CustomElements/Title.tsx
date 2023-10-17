@@ -1,4 +1,5 @@
 import { Anton } from 'next/font/google'
+import Link from 'next/link'
 
 const text = Anton({
   style: ["normal"],
@@ -19,11 +20,14 @@ function Title() {
       <p className="text-xl sm:text-3xl text-zinc-300 my-5 sm:my-10" >
         Crea, Participa y Gana en torneos
       </p>
-      <button
-        className='bg-zinc-950 border-2 border-cyan-400 rounded-lg py-2 w-full 
-        max-w-sm text-2xl text-cyan-400'>
-        JUGAR
-      </button>
+      <div className='flex justify-center max-w-xs mx-auto' >
+        <Link
+          className='bg-cyan-400 border-cyan-400 border-4 text-center rounded-xl py-2
+        cursor-pointer text-2xl font-semibold text-slate-950 w-full'
+          href={'/torneos'} >
+          Torneos
+        </Link>
+      </div>
     </div>
   )
 }

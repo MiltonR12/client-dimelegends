@@ -8,7 +8,7 @@ function UserPage() {
   return (
     <section className="p-3" >
       <Authenticate>
-        <div className="p-2 flex flex-col gap-5 container mx-auto" >
+        <div className="p-2 flex flex-col gap-5 max-w-4xl mx-auto" >
           <Profile />
           <PageProfile />
           <ExitButton />

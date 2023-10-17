@@ -5,9 +5,11 @@ function ListCreators({ page }: { page: Page[] }) {
   return (
     <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,500px))] justify-center gap-3" >
       {
-        page.map((item, index) => (
-          <CardOrganizer key={index} organizer={item} />
-        ))
+        page.map((item, index) => {
+          if (item.urlImage) {
+            return <CardOrganizer key={index} organizer={item} />
+          }
+        })
       }
     </div>
   )

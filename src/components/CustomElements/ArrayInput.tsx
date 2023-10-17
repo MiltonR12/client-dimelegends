@@ -10,12 +10,12 @@ const roboto = Roboto({
 type Props = {
   name: string,
   title: string,
-  placehoder?: string,
+  placeholder?: string,
   values: string[],
   required?: boolean
 }
 
-function ArrayInput({ name, title, placehoder = "", values, required = false }: Props) {
+function ArrayInput({ name, title, placeholder = "", values, required = false }: Props) {
   return (
     <div>
       <FieldArray
@@ -36,7 +36,7 @@ function ArrayInput({ name, title, placehoder = "", values, required = false }: 
                   <div key={index} className='flex gap-2 justify-between bg-zinc-900 py-1 px-2
                   rounded-md border-l-4 border-red-600' >
                     <Field
-                      placehoder={placehoder}
+                      placeholder={placeholder}
                       required={required}
                       autoComplete="off"
                       className='bg-transparent outline-none w-full md:text-xl'

@@ -31,7 +31,7 @@ function DetailsTorneo({ torneo }: { torneo: CardTournament }) {
           <SectionInfo title="Creador" value={torneo.Page.pageName} />
           <Link
             href={`/torneo/${torneo.nro}`}
-            className="bg-cyan-400 text-black rounded-lg py-1 text-xl font-semibold
+            className="bg-red-600 text-white rounded-lg py-1 text-xl font-semibold
             flex items-center justify-center gap-3" >
             <span>Ver Mas</span> <AiOutlineDoubleRight />
           </Link>

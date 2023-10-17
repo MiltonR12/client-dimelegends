@@ -11,6 +11,7 @@ import RecordSuccess from '../show/RecordSuccess'
 import { useState } from 'react'
 import { RecordDefault } from '@/utils/defaultForm'
 import SecondaryButton from '../CustomElements/Buttons/SecondaryButton'
+import MessageError from '../CustomElements/MessageError'
 
 type Prosp = {
   initialValues?: Omit<Record, "teamID">
@@ -22,6 +23,7 @@ function RecordForm({ initialValues = RecordDefault, isCreate }: Prosp) {
   const { mutate: createRecord } = useCreateRecord()
   const { mutate: updateRecord } = useUpdateRecord()
   const [success, setSuccess] = useState(false)
+  const [errores, setErrores] = useState<any>(null)
 
   const params = useParams()
   const router = useRouter()
@@ -29,6 +31,9 @@ function RecordForm({ initialValues = RecordDefault, isCreate }: Prosp) {
   const handleSubmit = (record: Omit<Record, "teamID">) => {
     if (isCreate) {
       createRecord({ record, nro: params.nro as string }, {
+        onError(error, variables, context) {
+          setErrores(error)
+        },
         onSuccess() {
           setSuccess(true)
         },
@@ -58,10 +63,14 @@ function RecordForm({ initialValues = RecordDefault, isCreate }: Prosp) {
                   {isCreate ? "Registrar Equipo" : "Actualizar Equipo"}
                 </h3>
 
+                <MessageError errores={errores} />
+
                 <InputCustom name='teamName' title='Nombre del Equipo' required={true} />
                 <InputCustom name='captain' title='Nombre del Capitan' required={true} />
                 <InputCustom name='phone' title='Numero del Capitan' required={true} />
-                <ArrayInput name='players' title='Integrantes' values={values.players} />
+                <ArrayInput
+                  placeholder='Nick / ID'
+                  name='players' title='Integrantes' values={values.players} />
 
                 <div className='grid md:grid-cols-2 gap-3 mt-5' >
                   {!isCreate && <SecondaryButton

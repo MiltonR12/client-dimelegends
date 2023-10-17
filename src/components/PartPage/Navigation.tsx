@@ -46,8 +46,8 @@ function Navigation() {
           {isClient && !isAllow && <NavSession />}
           {isClient && isAllow && <Link
             href={`/user/${user.firstName}`}
-            className='bg-cyan-500 rounded-full h-14 w-14 items-center justify-center
-            text-3xl font-semibold flex' >
+            className='bg-zinc-950 rounded-full h-14 w-14 items-center justify-center
+            text-3xl font-bold flex border-2 border-red-600 text-red-600' >
             <h3> {user.firstName.toUpperCase().charAt(0)} </h3>
           </Link>}
 
