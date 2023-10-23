@@ -11,6 +11,37 @@
 .fondo {
   background: linear-gradient(0deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.3)),
     url(../imgs/fondo.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.fondoCircle {
+  background: radial-gradient(
+    circle at 100% 50%,
+    rgb(255, 0, 0) 0%,
+    rgb(10, 10, 10) 55%,
+    rgb(10, 10, 10) 50%
+  );
+}
+
+
+/* Establece un scroll personalizado */
+/* Haz que el scroll vertical sea visible */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Establece el color de fondo del scroll */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Establece el color de la barra del scroll */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Cambia el cursor cuando el mouse pasa sobre el scroll */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

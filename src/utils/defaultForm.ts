@@ -24,3 +24,12 @@ export const TournametDefault = {
   rules: [""],
   award: [""]
 }
+
+export const defaultBattle = {
+  teamOne: "",
+  teamTwo: "",
+  battleDate: "",
+  battleGroup: "on",
+  battlephase: 1,
+  battleID: "",
+}

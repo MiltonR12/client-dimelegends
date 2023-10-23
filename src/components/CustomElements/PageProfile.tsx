@@ -9,6 +9,8 @@ import ButtonManage from "./Buttons/ButtonManage"
 import UploadForm from "../CustomForms/UploadForm"
 import Image from 'next/image'
 import { useState } from 'react'
+import Clipboard from 'clipboard'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 function PageProfile() {
 
@@ -16,6 +18,8 @@ function PageProfile() {
   const { mutate: updatePage } = useUpdatePage()
   const router = useRouter()
   const [editar, setEditar] = useState(false)
+  const clip = new Clipboard("btn")
+
 
   const addLinkGroup = () => {
     showDialogInput({
@@ -91,18 +95,22 @@ function PageProfile() {
             </div>
             : <UploadForm />}
 
+
+
           {
             data.urlGroup ? <CampEnlace
+              textCopy={data.urlGroup}
               handleClick={addLinkGroup}
-              title={`Enlace Del Grupo: ${data.urlGroup}`} /> : <ButtonAdd
+              title={`Copiar enlace del grupo`} /> : <ButtonAdd
               action={addLinkGroup}
               title="Añadir enlace del grupo" />
           }
 
           {
             data.urlPage ? <CampEnlace
+              textCopy={data.urlPage}
               handleClick={addLinkPage}
-              title={`Enlace De La Pagina: ${data.urlPage}`}
+              title={`Copiar enlace de la pagina`}
             /> : <ButtonAdd
               action={addLinkPage}
               title="Añadir enlace de la pagina" />

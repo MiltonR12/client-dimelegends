@@ -1,8 +1,8 @@
 
-function HeaderVersus() {
+function HeaderVersus({ isUser }: { isUser?: boolean }) {
   return (
     <thead className='bg-slate-950 text-cyan-500 font-semibold sticky top-0' >
-      <tr className="text-xl" >
+      <tr className={`text-xl ${isUser ? "grid grid-cols-4" : ""}`} >
         <th>
           Participante 1
         </th>

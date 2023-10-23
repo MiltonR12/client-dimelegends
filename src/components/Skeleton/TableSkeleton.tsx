@@ -1,6 +1,7 @@
-const num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+function TableSkeleton({ nroCamp = 10 }: { nroCamp?: number }) {
 
-function TableSkeleton() {
+  const num = Array.from({ length: nroCamp }, (_, index) => index + 1);
+
   return (
     <tbody>
       {

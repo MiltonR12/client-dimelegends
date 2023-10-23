@@ -8,7 +8,9 @@ function ContactoPage() {
       <div className='grid md:grid-cols-2 gap-5 max-w-3xl mx-auto p-5 bg-zinc-950 rounded-2xl' >
         <div className='flex flex-col justify-center gap-5 text-center md:text-left' >
           <h3 className=" text-3xl md:text-5xl font-semibold text-rose-600" >Contactanos!</h3>
-          <p className='text-zinc-300' >Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat perspiciatis officia voluptas quia cumque aperiam sit, explicabo reprehenderit officiis delectus.</p>
+          <p className='text-zinc-300' >
+            ¡No esperes más para unirte a la diversión! Tu pasión por los videojuegos merece ser compartida. ¡Contáctame ahora y descubre un mundo de emocionantes torneos gaming en mi página web! ¡Juntos, crearemos experiencias inolvidables!
+          </p>
           <h5 className='text-cyan-400 text-center text-3xl border-b-2 border-cyan-400' >
             Nuestas Redes
           </h5>

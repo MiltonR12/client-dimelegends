@@ -16,6 +16,13 @@ function MessageError({ errores }: { errores: any }) {
         contErrores.push(nuevo)
       }
     }
+
+    if (errores.response.status === 401) {
+      errores.response.data.error.map((item: MessageError, index: number) => {
+        contErrores.push(item)
+      })
+    }
+
     if (errores.response.status === 500) {
       const nuevo = errores.response.data.message
       contErrores.push({

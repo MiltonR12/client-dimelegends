@@ -1,41 +1,48 @@
-import { useCreateAllBattles, useGetBattles } from "@/hooks/useBattle"
-import CampBattle from "../camp/CampBattle"
+import { useGetBattles } from "@/hooks/useBattle"
 import HeaderHorario from "../headers/HeaderHorario"
+import GenerateBattleForm from "@/components/CustomForms/GenerateBattleForm"
+import TableSkeleton from "@/components/Skeleton/TableSkeleton"
+import { orderByPhase } from "@/utils/function"
+import TablePhase from "@/components/CustomForms/TablePhase"
 
-function ListTimeTable({ nro }: { nro: string }) {
+function ListTimeTable({ nro, group }: { nro: string, group: number }) {
 
   const { data = [], isLoading, isError } = useGetBattles(nro)
-  const { mutate: createAllBattles } = useCreateAllBattles()
 
-  const generateBattles = () => {
-    createAllBattles({
-      nro,
-      data: {
-        nroBattlesByDay: 3,
-        timeBattles: 30,
-        startBattles: new Date()
-      }
-    })
+  const orderByData = () => {
+    if (group === 1) {
+      return orderByPhase(data.filter((item) => item.battleGroup === "A"))
+    } else if (group === 2) {
+      return orderByPhase(data.filter((item) => item.battleGroup === "B"))
+    }
+    return orderByPhase(data)
   }
 
+  const battlePhase = orderByData()
+
   return (
-    <>
-      {isLoading && <p>Cargando...</p>}
+    <div className="bg-zinc-950" >
+      {isLoading && <table className="w-full" >
+        <HeaderHorario />
+        <TableSkeleton nroCamp={8} />
+      </table>}
       {!isLoading && isError && <small>Error en el servidor</small>}
-      {!isLoading && !isError && <button onClick={generateBattles} >
-        Generar Encuentros
-      </button>}
+      {!isLoading && !isError && data.length === 0 && <GenerateBattleForm nro={nro} />}
       <table className="w-full" >
         <HeaderHorario />
-        <tbody >
+        <tbody>
           {
-            data.map((item, index) => (
-              <CampBattle battle={item} num={index} key={index} nro={nro} />
+            battlePhase.map((item, index) => (
+              <TablePhase
+                key={index}
+                battle={item}
+                nro={nro}
+                nroPhase={index + 1} />
             ))
           }
         </tbody>
       </table>
-    </>
+    </div>
   )
 }
 

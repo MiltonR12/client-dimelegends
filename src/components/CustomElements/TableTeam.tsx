@@ -8,7 +8,7 @@ import Link from "next/link"
 import { useState } from "react"
 import TableSkeleton from "../Skeleton/TableSkeleton"
 
-function TableTeam({ nro }: { nro: string }) {
+function TableTeam({ nro }: { nro: string}) {
 
   const { data = [], isLoading, isError } = useGetRecords(nro)
   const [search, setSearch] = useState("")

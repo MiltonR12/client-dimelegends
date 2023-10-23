@@ -8,6 +8,7 @@ import {
 import { querClient } from "@/lib/queryClient";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Record } from '@/types/interfaces'
+import { modalError } from "@/components/show/modals";
 
 export const useGetRecord = <T>(nro: string, id: string) => {
   return useQuery<T>({
@@ -29,6 +30,9 @@ export const useCreateRecord = () => {
     onSuccess(data, variables, context) {
       querClient.invalidateQueries({ queryKey: ["records"] });
     },
+    onError(){
+      modalError("Error al crear el registro")
+    }
   });
 };
 
@@ -38,6 +42,9 @@ export const useDeleteRecord = () => {
     onSuccess(data, variables, context) {
       querClient.invalidateQueries({ queryKey: ["records"] });
     },
+    onError(){
+      modalError("Error al eliminar el registro")
+    }
   });
 };
 
@@ -47,5 +54,8 @@ export const useUpdateRecord = () => {
     onSuccess(data, variables, context) {
       querClient.invalidateQueries({ queryKey: ["records"] });
     },
+    onError(){
+      modalError("Error al actualizar el registro")
+    }
   });
 };

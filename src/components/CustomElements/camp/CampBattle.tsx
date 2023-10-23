@@ -4,13 +4,17 @@ import { AiFillDelete } from "react-icons/ai"
 import { HiOutlinePencilSquare } from "react-icons/hi2"
 import { showDelete } from '@/components/show/DeleteShow'
 import { dateBattle, hoursBattle } from "@/utils/dateLocal"
+import BattleForm from "@/components/CustomForms/BattleForm"
+import { useState } from 'react'
 
-type Props = { battle: Battle, num: number, nro: string }
+type Props = { battle: Battle, nro: string }
+type EventClick = React.MouseEvent<HTMLButtonElement>
 
-function CampBattle({ battle, num, nro }: Props) {
+function CampBattle({ battle, nro }: Props) {
 
   const { mutate: deleteBattle } = useDeleteBattle()
   const { mutate: updateWinner } = useUpdateWinner()
+  const [isVisible, setIsVisible] = useState(false)
 
   const handleDelete = () => {
     showDelete({
@@ -20,7 +24,7 @@ function CampBattle({ battle, num, nro }: Props) {
     })
   }
 
-  const handleWinner = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleWinner = (e: EventClick) => {
     const winner = e.currentTarget.textContent
 
     if (winner) {
@@ -33,39 +37,52 @@ function CampBattle({ battle, num, nro }: Props) {
   }
 
   return (
-    <tr
-      className={`md:text-xl hover:bg-slate-700
-      transition-all bg-slate-900 
+    <>
+      <tr
+        className={`md:text-xl hover:bg-slate-700 transition-all bg-slate-900 
       flex border-collapse border border-zinc-500`} >
-      <td className="grid grid-cols-3 text-center w-[90%]" >
-        <button onClick={handleWinner}
-          className={`${battle.teamOne === battle.battleWinner ?
-            "border-green-800 text-green-950 bg-green-300" : ""}
-          py-2`} >
-          {battle.teamOne}
-        </button>
-        <div className="grid grid-cols-2 py-2" >
-          <p>{dateBattle(battle.battleDate)}</p>
-          <p>{hoursBattle(battle.battleDate)}</p>
-        </div>
-        <button onClick={handleWinner}
-          className={`${battle.teamTwo === battle.battleWinner ?
-            "border-green-800 text-green-950 bg-green-300" : ""}
-          py-2`} >
-          {battle.teamTwo}
-        </button>
-      </td>
-      <td className="flex justify-center gap-5 w-[10%] text-2xl" >
-        <button>
-          <HiOutlinePencilSquare />
-        </button>
-        <button
-          onClick={handleDelete}
-          className='text-red-600' >
-          <AiFillDelete />
-        </button>
-      </td>
-    </tr>
+        <td className="grid grid-cols-2 md:grid-cols-3 w-[90%]" >
+          <button onClick={handleWinner}
+            className={`${battle.teamOne === battle.battleWinner ?
+              "border-green-800 text-green-950 bg-green-300" : ""}
+               py-2 truncate`} >
+            {battle.teamOne}
+          </button>
+          <div className="grid row-span-2 md:row-auto py-2 text-center md:grid-cols-2" >
+            <p className="truncate" >{dateBattle(battle.battleDate)}</p>
+            <p className="truncate" >{hoursBattle(battle.battleDate)}</p>
+          </div>
+          <button onClick={handleWinner}
+            className={`${battle.teamTwo === battle.battleWinner ?
+              "border-green-800 text-green-950 bg-green-300" : ""} 
+              py-2 truncate `} >
+            {battle.teamTwo}
+          </button>
+        </td>
+        <td className="w-[10%] grid md:grid-cols-2 items-center justify-center text-xl" >
+          <div className="flex items-center justify-center h-full" >
+            <button onClick={() => setIsVisible(!isVisible)} >
+              <HiOutlinePencilSquare />
+            </button>
+          </div>
+          <div className="flex items-center justify-center h-full" >
+            <button
+              onClick={handleDelete}
+              className='text-red-600' >
+              <AiFillDelete />
+            </button>
+          </div>
+        </td>
+      </tr>
+      {isVisible && <tr>
+        <td>
+          <BattleForm
+            isUpdate={true}
+            nro={nro}
+            initValues={{ ...battle, battleGroup: battle.battleGroup ?? "on", }} />
+        </td>
+      </tr>}
+    </>
   )
 }
 

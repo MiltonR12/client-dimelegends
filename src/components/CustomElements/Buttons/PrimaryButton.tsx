@@ -11,8 +11,9 @@ function PrimaryButton({ href, children, target }: Props) {
   if (href.charAt(0) === '/') {
     return <Link
       target={target}
-      className='bg-cyan-400 border-cyan-400 border-4 text-center rounded-xl py-2 px-4
-        cursor-pointer text-xl font-semibold text-slate-950'
+      className='bg-red-600 border-red-600 border-4 text-center rounded-xl py-2 px-4
+        cursor-pointer text-xl font-semibold hover:bg-red-700 hover:border-red-700
+        transition-all'
       href={href} >
       {children}
     </Link>
@@ -20,8 +21,9 @@ function PrimaryButton({ href, children, target }: Props) {
 
   return <a
     target={target}
-    className='bg-cyan-400 border-cyan-400 border-4 text-center rounded-xl py-2
-        cursor-pointer text-xl font-semibold text-slate-950'
+    className='bg-red-600 border-red-600 border-4 text-center rounded-xl py-2
+        cursor-pointer text-xl font-semibold hover:bg-red-700 hover:border-red-700
+        transition-all'
     href={href} >
     {children}
   </a>

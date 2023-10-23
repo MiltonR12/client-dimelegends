@@ -12,7 +12,7 @@ function ListDetails({ title, values }: Props) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className='rounded-sm border-2 border-cyan-400' >
+    <div className='rounded-sm border-2 border-red-600' >
       <button
         onClick={() => setIsOpen(!isOpen)}
         className='flex justify-between items-center text-xl bg-black py-1 w-full px-3'

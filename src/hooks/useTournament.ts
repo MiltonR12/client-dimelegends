@@ -6,14 +6,16 @@ import {
   getTournament,
   updateTournament,
 } from "@/api/tournamentApi";
+import { modalError } from "@/components/show/modals";
 import { querClient } from "@/lib/queryClient";
+import { TournamentComplet } from "@/types/interfaces";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 type Mitorneo = {
-  nro: string,
-  tournamentName: string,
-  formUrl: string
-}
+  nro: string;
+  tournamentName: string;
+  formUrl: string;
+};
 
 export const useGetAllTorneo = <T>() => {
   return useQuery<T>({
@@ -22,8 +24,8 @@ export const useGetAllTorneo = <T>() => {
   });
 };
 
-export const useGetTorneo = <T>(nro: string) => {
-  return useQuery<T>({
+export const useGetTorneo = (nro: string) => {
+  return useQuery<TournamentComplet>({
     queryKey: ["torneos", nro],
     queryFn: () => getTournament(nro),
   });
@@ -42,6 +44,9 @@ export const useCreatTorneo = () => {
     onSuccess() {
       querClient.invalidateQueries(["torneos", "mis-torneos"]);
     },
+    onError() {
+      modalError("Error al crear el torneo")
+    }
   });
 };
 
@@ -51,6 +56,9 @@ export const useDeleteTorneo = () => {
     onSuccess(data, variables, context) {
       querClient.invalidateQueries(["mis-torneos", "torneos", variables]);
     },
+    onError(){
+      modalError("No se pudo eliminar el torneo")
+    }
   });
 };
 
@@ -60,5 +68,8 @@ export const useUpdateTorneo = () => {
     onSuccess() {
       querClient.invalidateQueries(["mis-torneos", "torneos"]);
     },
+    onError(){
+      modalError("Error al actualizar el torneo")
+    }
   });
 };

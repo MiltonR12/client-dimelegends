@@ -3,7 +3,7 @@ import { Battle } from "@/types/interfaces";
 
 type CreateProps = {
   nro: string;
-  battle: Omit<Battle, "battleID">;
+  battle: Omit<Battle, "battleID" | "battleWinner">;
 };
 
 type DeleteProps = {
@@ -22,8 +22,13 @@ type CreateAllProps = {
   data: {
     nroBattlesByDay: number;
     timeBattles: number;
-    startBattles: Date;
+    startBattles: string;
   };
+};
+
+type UpdateProps = {
+  nro: string;
+  battle: Omit<Battle, "battleID" | "battleWinner">;
 };
 
 export const getBattles = async (nro: string) => {
@@ -48,5 +53,10 @@ export const deleteBattle = async ({ nro, id }: DeleteProps) => {
 
 export const updateWinner = async ({ nro, winner, id }: WinnerProps) => {
   const res = await axios.patch(`/battle/winner/${nro}`, { id, winner });
+  return res.data;
+};
+
+export const updateBattle = async ({ battle, nro }: UpdateProps) => {
+  const res = await axios.put(`/battle/${nro}`, battle);
   return res.data;
 };
