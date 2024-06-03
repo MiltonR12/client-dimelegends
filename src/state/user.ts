@@ -1,9 +1,9 @@
 import { persist } from "zustand/middleware";
 import { create } from "zustand";
-import { User } from "@/types/interfaces";
+import { User as Usuario } from "@/types/interfaces";
 
 type State = {
-  user: Omit<User, "password">;
+  user: Omit<Usuario, "password">;
   isAllow: boolean;
   token: string;
   updateState: (user: any, token: string) => void;

@@ -31,7 +31,7 @@ function RecordForm({ initialValues = RecordDefault, isCreate }: Prosp) {
   const handleSubmit = (record: Omit<Record, "teamID">) => {
     if (isCreate) {
       createRecord({ record, nro: params.nro as string }, {
-        onError(error, variables, context) {
+        onError(error) {
           setErrores(error)
         },
         onSuccess() {
@@ -70,7 +70,10 @@ function RecordForm({ initialValues = RecordDefault, isCreate }: Prosp) {
                 <InputCustom name='phone' title='Numero del Capitan' required={true} />
                 <ArrayInput
                   placeholder='Nick / ID'
-                  name='players' title='Integrantes' values={values.players} />
+                  name='players'
+                  title='Integrantes'
+                  values={values.players}
+                />
 
                 <div className='grid md:grid-cols-2 gap-3 mt-5' >
                   {!isCreate && <SecondaryButton
