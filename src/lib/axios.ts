@@ -2,8 +2,8 @@ import { useUserState } from "@/state/user";
 import axios from "axios";
 
 const newAxios = axios.create({
-  baseURL: "http://localhost:4000/api/",
-  // baseURL: "https://dimelgends-xfdn-dev.fl0.io/api/",
+  // baseURL: "http://localhost:4000/api/",
+  baseURL: "https://dimelgends.onrender.com/api",
 });
 
 newAxios.interceptors.request.use((config) => {
